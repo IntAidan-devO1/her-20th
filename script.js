@@ -1,3 +1,29 @@
+window.addEventListener("load", function () {
+    const music = document.getElementById("bgMusic");
+
+    music.volume = 0; // start silent
+
+    // try to play (browser may require interaction)
+    let playPromise = music.play();
+
+    if (playPromise !== undefined) {
+        playPromise.then(() => {
+            let volume = 0;
+
+            let fade = setInterval(() => {
+                if (volume < 1) {
+                    volume += 0.02; // fade speed
+                    music.volume = volume;
+                } else {
+                    clearInterval(fade);
+                }
+            }, 100);
+        }).catch(() => {
+            console.log("Autoplay blocked — will start on interaction");
+        });
+    }
+});
+
 function showSurprise() {
     document.getElementById("hiddenMessage").style.display = "block";
 }
@@ -31,3 +57,25 @@ function spawnHeart() {
 
 // continuously spawn hearts
 setInterval(spawnHeart, 400);
+
+document.addEventListener("mousemove", function(e) {
+    let sparkle = document.createElement("div");
+    sparkle.innerHTML = "✨";
+    sparkle.className = "sparkle";
+    document.body.appendChild(sparkle);
+
+    sparkle.style.left = e.pageX + "px";
+    sparkle.style.top = e.pageY + "px";
+
+    setTimeout(() => {
+        sparkle.remove();
+    }, 800);
+});
+
+function openLetter() {
+    document.getElementById("loveLetter").style.display = "block";
+}
+
+function closeLetter() {
+    document.getElementById("loveLetter").style.display = "none";
+}

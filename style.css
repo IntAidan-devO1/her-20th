@@ -145,3 +145,35 @@ button:hover {
 a {
     text-decoration: none;
 }
+
+.sparkle {
+    position: absolute;
+    pointer-events: none;
+    font-size: 14px;
+    animation: fadeOut 0.8s linear forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(2);
+    }
+}
+
+.love-letter {
+    display: none;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #8b4513;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    width: 80%;
+    max-width: 400px;
+}
